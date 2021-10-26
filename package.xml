@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>imu_calib</name>
+  <name>imu_calib_languageslam</name>
   <version>0.0.0</version>
   <description>Package for computing and applying IMU calibrations</description>
 
