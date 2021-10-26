@@ -71,6 +71,9 @@ ApplyCalib::ApplyCalib() :
   raw_sub_ = nh.subscribe("raw_imu", queue_size, &ApplyCalib::rawImuCallback, this);
   corrected_pub_ = nh.advertise<sensor_msgs::Imu>("imu/data_raw", queue_size);
   mag_pub_ = nh.advertise<sensor_msgs::MagneticField>("imu/mag", queue_size);
+
+  ns=ros::this_node::getNamespace();
+  ns.erase(0,1);//since get namespace adds a / infront, which is messing with tf2
 }
 
 void ApplyCalib::rawImuCallback(lino_msgs::Imu::ConstPtr raw)
@@ -111,7 +114,7 @@ void ApplyCalib::rawImuCallback(lino_msgs::Imu::ConstPtr raw)
   sensor_msgs::Imu corrected;
 
   corrected.header.stamp = ros::Time::now();
-  corrected.header.frame_id = "imu_link";
+  corrected.header.frame_id = ns+"imu_link";
   
   //pass calibrated acceleration to corrected IMU data object
   corrected.linear_acceleration.x = corrected_accel[0];

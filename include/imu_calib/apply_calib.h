@@ -43,7 +43,7 @@
 #include <lino_msgs/Imu.h>
 #include <sensor_msgs/Imu.h>
 #include <sensor_msgs/MagneticField.h>
-
+#include <std_msgs/String.h>
 #include <imu_calib/accel_calib.h>
 
 namespace imu_calib
@@ -60,7 +60,7 @@ private:
   ros::Subscriber raw_sub_;
   ros::Publisher corrected_pub_;
   ros::Publisher mag_pub_;
-
+  std::string ns;
   void rawImuCallback(lino_msgs::Imu::ConstPtr raw);
 
   bool calibrate_gyros_;
