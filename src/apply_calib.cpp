@@ -73,7 +73,12 @@ ApplyCalib::ApplyCalib() :
   mag_pub_ = nh.advertise<sensor_msgs::MagneticField>("imu/mag", queue_size);
 
   ns=ros::this_node::getNamespace();
-  ns.erase(0,1);//since get namespace adds a / infront, which is messing with tf2
+  if(!ns.empty())
+  {
+      ns.erase(0,1);//since get namespace adds a / infront, which is messing with tf2
+      ROS_WARN("%s",ns.c_str());
+      ns+='/';
+  }
 }
 
 void ApplyCalib::rawImuCallback(lino_msgs::Imu::ConstPtr raw)
