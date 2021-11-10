@@ -119,7 +119,7 @@ void ApplyCalib::rawImuCallback(lino_msgs::Imu::ConstPtr raw)
   sensor_msgs::Imu corrected;
 
   corrected.header.stamp = ros::Time::now();
-  corrected.header.frame_id = ns+"/imu_link";
+  corrected.header.frame_id = ns+"imu_link";
   
   //pass calibrated acceleration to corrected IMU data object
   corrected.linear_acceleration.x = corrected_accel[0];
